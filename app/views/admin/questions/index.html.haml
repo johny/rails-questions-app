@@ -11,14 +11,13 @@
 %table.table
   %thead
     %tr
-      %th Id
+      %th.col-sm-1 Id
       %th Title
-      %th
+      %th.col-sm-1
   %tbody
     - @questions.each do |q|
       %tr
         %td= q.id
-        %td
-          = link_to q.title, admin_question_path(q)
+        %td= link_to q.title, admin_question_path(q)
         %td
           = link_to 'Edit', edit_admin_question_path(q)

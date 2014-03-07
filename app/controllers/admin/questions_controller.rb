@@ -24,7 +24,7 @@ class Admin::QuestionsController < Admin::AdminController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to admin_questions_path, notice: 'Question was successfully created.'
+      redirect_to admin_question_answers_path(@question), notice: 'Question was successfully created.'
     else
       render action: 'new'
     end

@@ -11,3 +11,16 @@
         %span.glyphicon.glyphicon-remove
         Delete
 
+
+
+%div.page-content
+  %div.row
+    %div.col-md-6
+      - if @question.answers.size > 0
+        %ul.list-group
+          - @question.answers.each_with_index do |answer, index|
+            %li.list-group-item #{index+1}. #{answer.content}
+      - else
+        %p No answers yet.
+
+      = link_to "Manage answers", admin_question_answers_path(@question), class: 'btn btn-default'

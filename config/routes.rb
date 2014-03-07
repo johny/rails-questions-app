@@ -7,7 +7,9 @@ Questions::Application.routes.draw do
 
 
   namespace :admin do
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
     get '/', to: 'admin#dashboard', as: 'dashboard'
   end
 

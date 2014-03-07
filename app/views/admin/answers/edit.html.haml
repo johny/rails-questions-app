@@ -1,0 +1,17 @@
+%div.page-header
+  %h1= @question.title
+
+%div.page-content
+  = form_for [:admin, @question, @answer] do |f|
+    .form-group
+      = f.label :content, "Edit answer:"
+      = f.text_field :content, class: 'form-control', autofocus: true
+
+    .form-group
+      %div.checkbox
+        = f.label :is_correct do
+          = f.check_box :is_correct
+          This is correct answer
+
+    .actions
+      = f.submit 'Update answer', class: 'btn btn-primary'
