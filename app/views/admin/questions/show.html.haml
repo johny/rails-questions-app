@@ -1,0 +1,13 @@
+%div.page-header
+  %h1= @question.title
+
+  %ul.nav.nav-pills
+    %li
+      = link_to edit_admin_question_path(@question) do
+        %span.glyphicon.glyphicon-edit
+        Edit
+    %li
+      = link_to admin_question_path(@question), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+        %span.glyphicon.glyphicon-remove
+        Delete
+

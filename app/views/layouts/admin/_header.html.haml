@@ -1,0 +1,13 @@
+%header
+  %nav.navbar.navbar-inverse.navbar-static-top
+    .container
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to 'Questions Admin', root_path, class: 'navbar-brand'
+      .collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li= link_to "Questions", admin_questions_path
