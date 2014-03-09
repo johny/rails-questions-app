@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    @quiz = Quiz.daily
+    @daily_quiz = Quiz.has_daily_quiz_for current_user
   end
 
 end

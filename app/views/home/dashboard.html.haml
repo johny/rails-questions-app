@@ -4,9 +4,11 @@
 
 %div.page-content
 
-  - if @quiz
-    %div.alert.alert-info
+  %div.alert.alert-info
+    - if @daily_quiz
       %p
         Dostępny nowy codzieny quiz:
         %strong= @quiz.title
       %p= link_to "Zagraj teraz", new_quiz_game_path(@quiz), class: "btn btn-primary"
+    - else
+      %p Już wypełniłeś codzienny quiz! Sprawdź jutro!

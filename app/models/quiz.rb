@@ -26,7 +26,17 @@ class Quiz < ActiveRecord::Base
     state :archived
   end
 
-
   scope :daily, -> { with_active_state.first}
+
+  def self.has_daily_quiz_for user
+    quiz = self.daily
+
+    if user.quizzes.include? quiz
+      return false
+    else
+      return quiz
+    end
+
+  end
 
 end
