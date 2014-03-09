@@ -1,0 +1,8 @@
+%header
+  %nav.navbar.navbar-transparent.navbar-static-top
+    .container
+      .navbar-header
+        = link_to 'Quizpy.pl', root_path, class: 'navbar-brand'
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Zarejestruj się', new_user_registration_path
+        %li= link_to 'Zaloguj się', new_user_session_path
