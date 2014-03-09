@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307211842) do
+ActiveRecord::Schema.define(version: 20140309122546) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -21,11 +21,39 @@ ActiveRecord::Schema.define(version: 20140307211842) do
     t.datetime "updated_at"
   end
 
+  create_table "queestion_quizzes", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "quiz_id"
+  end
+
+  create_table "question_quizzes", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "quiz_id"
+  end
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "questions_quizzes", id: false, force: true do |t|
+    t.integer "question_id"
+    t.integer "quiz_id"
+  end
+
+  create_table "quizzes", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.date     "date"
+    t.string   "type"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quizzes", ["type"], name: "index_quizzes_on_type", using: :btree
+  add_index "quizzes", ["workflow_state"], name: "index_quizzes_on_workflow_state", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

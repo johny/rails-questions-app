@@ -1,0 +1,17 @@
+= form_for([:admin, @quiz]) do |f|
+  .form-group
+    = f.label :title, "Quiz title:"
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :description, "Quiz description:"
+    = f.text_area :description, class: 'form-control', rows: 2
+
+  .form-group
+    = f.label :date, "Quiz date:"
+    = f.date_field :date, class: 'form-control'
+
+  .form-group.form-actions
+    - if @quiz.new_record?
+      = f.submit "Create quiz", class: 'btn btn-primary'
+    - else
+      = f.submit "Update quiz", class: 'btn btn-primary'

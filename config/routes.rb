@@ -10,6 +10,10 @@ Questions::Application.routes.draw do
     resources :questions do
       resources :answers
     end
+    resources :quizzes do
+      resources :questions, only: [:index, :create]
+    end
+
     get '/', to: 'admin#dashboard', as: 'dashboard'
   end
 

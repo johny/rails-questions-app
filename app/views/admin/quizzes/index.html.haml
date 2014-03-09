@@ -1,0 +1,29 @@
+%div.page-header
+  %h1 Daily quizzes
+
+  %ul.nav.nav-pills
+    %li
+      = link_to new_admin_quiz_path do
+        %span.glyphicon.glyphicon-plus
+        Create new Quiz
+
+
+%table.table
+  %thead
+    %tr
+      %th.col-sm-1 Id
+      %th Title
+      %th Date
+      %th Status
+      %th Questions
+      %th.col-sm-1
+  %tbody
+    - @quizzes.each do |quiz|
+      %tr
+        %td= quiz.id
+        %td= link_to quiz.title, admin_quiz_path(quiz)
+        %td= quiz.date
+        %td= quiz.workflow_state
+        %td= quiz.questions.size
+        %td
+          = link_to 'Edit', edit_admin_quiz_path(quiz)

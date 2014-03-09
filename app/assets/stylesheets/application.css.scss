@@ -19,6 +19,11 @@ header{
   }
 }
 
+.section-header {
+  @extend .page-header;
+  position: relative;
+}
+
 main[role="main"]{
   min-height: 450px;
 }

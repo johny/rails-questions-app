@@ -10,6 +10,11 @@
     right: 0;
     top: 0;
   }
+}
 
+.section-header {
+  @extend .page-header;
+  position: relative;
+  margin-top: 0;
 }
 

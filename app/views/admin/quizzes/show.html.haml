@@ -1,0 +1,22 @@
+%div.page-header
+  %h1= @quiz.title
+
+  %ul.nav.nav-pills
+    %li
+      = link_to edit_admin_quiz_path(@quiz) do
+        %span.glyphicon.glyphicon-edit
+        Edit
+    %li
+      = link_to admin_quizzes_path(@quiz), :method => :delete, :data => { :confirm => 'Are you sure?' } do
+        %span.glyphicon.glyphicon-remove
+        Delete
+
+%div.page-content
+  - if @quiz.questions.size > 0
+    %ul.list-group
+      - @quiz.questions.each_with_index do |question, index|
+        %li.list-group-item #{index+1}. #{question.title}
+  - else
+    %p No questions yet.
+
+  = link_to "Manage questions", admin_quiz_questions_path(@quiz), class: 'btn btn-default'

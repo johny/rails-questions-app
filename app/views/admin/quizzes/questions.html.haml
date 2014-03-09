@@ -1,0 +1,26 @@
+%div.page-header
+  %h1= @quiz.title
+
+%div.page-content
+  - if @quiz.questions.size > 0
+    %ul.list-group
+      - @quiz.questions.each_with_index do |question, index|
+        %li.list-group-item #{index+1}. #{question.title}
+
+  - if @question
+    = form_for([:admin, @quiz, @question], html: {role: "form"}) do |f|
+      .form-group
+        = f.label :title, "#{@index}. Question"
+        = f.text_field :title, class: 'form-control'
+      .row
+        = f.fields_for :answers do |fa|
+          .form-group.col-md-9
+            = fa.label :content, "Answer content", class: "sr-only"
+            = fa.text_field :content, class: 'form-control', placeholder: "Answer"
+          .form-group.col-md-3
+            %div.checkbox
+              %label
+                = fa.check_box :is_correct
+                Correct
+      .form-group.form-actions
+        = f.submit "Add question", class: 'btn btn-primary'

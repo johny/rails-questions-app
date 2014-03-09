@@ -3,7 +3,22 @@ class Admin::QuestionsController < Admin::AdminController
 
   # GET /questions
   def index
-    @questions = Question.all
+    if params[:quiz_id].nil?
+      @questions = Question.all
+    else
+      @quiz = Quiz.find(params[:quiz_id])
+
+      if @quiz.questions.size < 10
+        @index = @quiz.questions.size + 1
+        @question = Question.new
+        4.times do
+          @question.answers.build
+        end
+      end
+
+      render template: 'admin/quizzes/questions'
+    end
+
   end
 
   # GET /questions/1
@@ -23,8 +38,16 @@ class Admin::QuestionsController < Admin::AdminController
   def create
     @question = Question.new(question_params)
 
+
     if @question.save
-      redirect_to admin_question_answers_path(@question), notice: 'Question was successfully created.'
+      flash[:notice] = 'Question was successfully created.'
+      if params[:quiz_id].nil?
+        redirect_to admin_question_answers_path(@question)
+      else
+        @quiz = Quiz.find params[:quiz_id]
+        @quiz.questions << @question
+        redirect_to admin_quiz_questions_path(@quiz)
+      end
     else
       render action: 'new'
     end
@@ -53,6 +76,6 @@ class Admin::QuestionsController < Admin::AdminController
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params.require(:question).permit(:title, :workflow_state)
+      params.require(:question).permit(:title, :workflow_state, answers_attributes: [:id, :content, :is_correct])
     end
 end

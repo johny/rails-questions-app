@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'mysql2'
 gem 'sendgrid'
+gem 'workflow'
 group :development do
   gem 'html2haml'
   gem 'quiet_assets'
