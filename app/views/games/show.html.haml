@@ -1,0 +1,14 @@
+%div.page-header
+  %h1= @quiz.title
+
+%div.page-content
+
+%div.row
+  %div.col-md-8
+    %div#quiz{data: {replies: quiz_game_replies_path(@quiz, @game, format: 'js'), results: results_quiz_game_path(@quiz, @game)}}
+      - @quiz.questions.each_with_index do |question, index|
+        = render partial: 'games/question', locals: {question: question, index: index}
+
+  %div.col-md-4
+    = render partial: 'games/timer'
+    = render partial: 'games/progress'

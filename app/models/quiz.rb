@@ -2,6 +2,9 @@ class Quiz < ActiveRecord::Base
 
   has_and_belongs_to_many :questions
 
+  has_many :games
+  has_many :users, through: :games
+
   include Workflow
   workflow do
 
@@ -22,5 +25,8 @@ class Quiz < ActiveRecord::Base
     # Old jobs, imported and archived
     state :archived
   end
+
+
+  scope :daily, -> { with_active_state.first}
 
 end

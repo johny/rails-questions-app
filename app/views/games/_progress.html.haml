@@ -1,0 +1,11 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h3.panel-title
+      Postęp:
+
+  %div.panel-body
+    %div.progress
+      %div.progress-bar.questions-progress-bar{role: 'progressbar', style: "width: 0%"}
+        %span.current-question 0
+        \\
+        %span.total-questions= @quiz.questions.size

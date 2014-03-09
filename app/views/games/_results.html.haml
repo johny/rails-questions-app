@@ -1,0 +1,12 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h3.panel-title
+      Wyniki:
+
+  %div.panel-body
+    %div.progress
+      - if @game.correct_replies_percentage > 0
+        %div.progress-bar.progress-bar-success{role: 'progressbar', style: "width: #{@game.correct_replies_percentage}%"} #{@game.correct_replies_percentage.to_i}%
+
+      - if @game.incorrect_replies_percentage > 0
+        %div.progress-bar.progress-bar-danger{role: 'progressbar', style: "width: #{@game.incorrect_replies_percentage}%"} #{@game.incorrect_replies_percentage.to_i}%

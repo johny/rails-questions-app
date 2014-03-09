@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-
+    @quiz = Quiz.daily
   end
 
 end

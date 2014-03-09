@@ -7,4 +7,8 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers
 
+  def correct_answer
+    answers.where(is_correct: true).first
+  end
+
 end

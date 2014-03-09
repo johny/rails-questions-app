@@ -1,0 +1,18 @@
+%div.page-header
+  %h1
+    Dzienny quiz:
+    %small= @quiz.title
+  %p.lead= @quiz.description
+
+%div.page-content
+
+  %div.well
+    %ul
+      %li Quiz zawiera #{@quiz.questions.size} pytań.
+      %li Każde pytanie ma tylko jedną poprawną odpowiedź.
+      %li Masz 30 sekund aby odpowiedzieć na poszczególne pytanie.
+      %li Zawsze liczy się Twoja pierwsza odpowiedź.
+      %li Masz tylko jedną próbę na cały quiz.
+      %li Jeśli nie do kończysz quizu, wyjdziesz przed czasem lub stracisz połączenie, uznamy tylko tyle odpowiedzi ile udało się zapisać.
+
+  = link_to "Rozpocznij grę", quiz_games_path(@quiz), method: :post, class: "btn btn-lg btn-primary"

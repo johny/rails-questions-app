@@ -1,2 +1,12 @@
 %div.page-header
   %h1 Witaj #{current_user.name}!
+
+
+%div.page-content
+
+  - if @quiz
+    %div.alert.alert-info
+      %p
+        Dostępny nowy codzieny quiz:
+        %strong= @quiz.title
+      %p= link_to "Zagraj teraz", new_quiz_game_path(@quiz), class: "btn btn-primary"

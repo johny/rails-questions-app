@@ -1,0 +1,22 @@
+%div.page-header
+  %h1
+    Wyniki quizu
+    %small= @quiz.title
+
+%div.page-content
+
+%div.row
+  %div.col-md-8
+    - @quiz.questions.each_with_index do |question, index|
+      %div.panel.panel-default.question
+        %div.panel-heading
+          %h3.panel-title #{index +1}. #{question.title}
+
+        %ul.list-group
+          - question.answers.each_with_index do |answer, idx|
+            %li{class: answer_class(answer, answer.replies.from_user_for_game(current_user, @game))}
+              #{letter(idx)}. #{answer.content}
+
+
+  %div.col-md-4
+    = render partial: 'games/results'
