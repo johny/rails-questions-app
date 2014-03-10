@@ -11,8 +11,10 @@
     -if content_for :intro
       %div.landing
         = render 'layouts/simple_header'
-        = render 'layouts/messages'
         = yield :intro
+      %div.container
+        = render 'layouts/messages'
+        = yield
     - else
       = render 'layouts/header'
       %div.container

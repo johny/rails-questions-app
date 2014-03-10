@@ -8,7 +8,7 @@
     - if @daily_quiz
       %p
         Dostępny nowy codzieny quiz:
-        %strong= @quiz.title
-      %p= link_to "Zagraj teraz", new_quiz_game_path(@quiz), class: "btn btn-primary"
+        %strong= @daily_quiz.title
+      %p= link_to "Zagraj teraz", new_quiz_game_path(@daily_quiz), class: "btn btn-primary"
     - else
       %p Już wypełniłeś codzienny quiz! Sprawdź jutro!
