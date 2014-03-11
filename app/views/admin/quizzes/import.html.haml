@@ -1,0 +1,17 @@
+%div.page-header
+  %h1 Import quiz
+
+%div.page-content
+
+  - if @yaml
+    = debug @yaml
+
+
+  = form_tag import_admin_quizzes_path, method: :post, :multipart => true do
+
+    .form-group
+      = label_tag :quiz_file, "Upload quiz Yaml file:"
+      = file_field_tag :quiz_file, class: 'form-control'
+
+    .form-actions
+      = submit_tag "Import file and create quiz", class: "btn btn-primary"

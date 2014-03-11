@@ -6,7 +6,10 @@
       = link_to new_admin_quiz_path do
         %span.glyphicon.glyphicon-plus
         Create new Quiz
-
+    %li
+      = link_to import_admin_quizzes_path do
+        %span.glyphicon.glyphicon-upload
+        Import Quiz
 
 %table.table
   %thead
@@ -16,7 +19,7 @@
       %th Date
       %th Status
       %th Questions
-      %th.col-sm-1
+      %th.col-sm-3
   %tbody
     - @quizzes.each do |quiz|
       %tr
@@ -26,4 +29,11 @@
         %td= quiz.workflow_state
         %td= quiz.questions.size
         %td
-          = link_to 'Edit', edit_admin_quiz_path(quiz)
+          = link_to 'Edit', edit_admin_quiz_path(quiz), class: 'btn btn-sm btn-default'
+          - if quiz.can_publish?
+            = link_to 'Publish', publish_admin_quiz_path(quiz), method: :patch, class: 'btn btn-sm btn-default'
+          - if quiz.can_unpublish?
+            = link_to 'Unpublish', unpublish_admin_quiz_path(quiz), method: :patch, class: 'btn btn-sm btn-default'
+          - if quiz.can_expire?
+            =link_to 'Expire', expire_admin_quiz_path(quiz), method: :patch, class: 'btn btn-sm btn-default'
+
