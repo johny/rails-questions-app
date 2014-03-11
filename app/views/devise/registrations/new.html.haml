@@ -6,7 +6,7 @@
   = devise_error_messages!
 
   %div.form-group
-    = f.label :name, "Twoje imię:"
+    = f.label :name, "Twoje imię lub pseudonim:"
     = f.text_field :name, autofocus: true, class: 'form-control'
 
   %div.form-group
@@ -17,9 +17,11 @@
     = f.label :password, "Hasło:"
     = f.password_field :password, class: 'form-control', placeholder: "Wybierz bezpieczne i łatwe do zapamiętania"
     %span.help-block Minimum 8 znaków
+
   %div.form-group
-    = f.label :password_confirmation, "Powtórz hasło"
+    = f.label :password_confirmation, "Powtórz hasło:"
     = f.password_field :password_confirmation, class: 'form-control'
 
-  = f.submit 'Zarejestruj się', class: 'btn btn-primary'
+  %div.form-actions
+    = f.submit 'Zarejestruj się', class: 'btn btn-primary btn-lg'
 

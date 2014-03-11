@@ -1,0 +1,16 @@
+%div.page-header
+  %h1 Nie pamiętasz hasła?
+
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f|
+
+  = devise_error_messages!
+
+  %div.form-group
+    = f.label :email, "Podaj Twój adres email:"
+    = f.email_field :email, autofocus: true, class: 'form-control'
+
+  %div.info
+    %p Na Twój email wyślemy dalsze instrukcje dotyczące resetu hasła.
+
+  %div.form-actions
+    = f.submit 'Zresetuj hasło', class: 'btn btn-primary btn-lg'
