@@ -8,6 +8,8 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    - if Rails.env == 'production'
+      = render 'layouts/gat'
     %div.landing.blur
       = render 'layouts/simple_header'
       %div.container
