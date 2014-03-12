@@ -11,6 +11,7 @@ gem 'bootstrap-sass'
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'figaro'
 gem 'haml-rails'

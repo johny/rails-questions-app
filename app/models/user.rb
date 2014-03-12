@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :quizzes, through: :games
 
 
-  def self.new_from_facebook_oauth data
+  def self.new_from_oauth data
 
     user = User.new({
       email: data['info']['email'],
@@ -19,14 +19,19 @@ class User < ActiveRecord::Base
     })
 
     auth = Authentication.new({
-      :provider => data['provider'],
-      :uid => data['uid'],
-      :token => data['credentials'].token,
-      :token_secret => data['credentials'].secret
+      provider: data['provider'],
+      uid: data['uid'],
+      token: data['credentials'].token
     })
 
-    user.authentications << auth
+    auth.token_secret = data['credentials'].secret unless data['credentials'].token_secret.blank?
+    auth.refresh_token = data['credentials'].refresh_token unless data['credentials'].refresh_token.blank?
+    auth.expires_at = data['credentials'].expires_at unless data['credentials'].expires_at.blank?
+    auth.expires =  data['credentials'].expires unless data['credentials'].expires.blank?
+    auth.image = data['info'].image unless data['info'].image.blank?
 
+
+    user.authentications << auth
     user.save!
 
     return user

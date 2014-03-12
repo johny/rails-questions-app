@@ -26,15 +26,21 @@ ActiveRecord::Schema.define(version: 20140312164119) do
     t.string   "provider"
     t.string   "uid"
     t.string   "token"
-    t.string   "token_secret"
+    t.string   "refresh_token"
+    t.datetime "expires_at"
+    t.boolean  "expires"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "authentications", ["provider"], name: "index_authentications_on_provider", using: :btree
+  add_index "authentications", ["uid"], name: "index_authentications_on_uid", unique: true, using: :btree
+
   create_table "games", force: true do |t|
     t.integer  "user_id"
     t.integer  "quiz_id"
-    t.integer  "score"
+    t.integer  "score",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

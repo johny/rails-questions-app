@@ -34,7 +34,7 @@ class Quiz < ActiveRecord::Base
     if user.quizzes.include? quiz
       return false
     else
-      return quiz
+      return quiz.first
     end
 
   end
