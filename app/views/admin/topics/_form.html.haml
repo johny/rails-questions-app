@@ -1,0 +1,16 @@
+= form_for([:admin, @topic]) do |f|
+  .form-group
+    = f.label :name, "Name:"
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :description, "Description:"
+    = f.text_area :description, class: 'form-control', rows: 2
+  .form-group
+    = f.label :parent_id, "Parent category:"
+    = f.select :parent_id, nested_set_options(Topic, @topic) {|i, level| "#{'-' * i.level} #{i.name}" }, {:prompt => "Root category", include_blank: "@Root category"}, class: 'form-control'
+
+  .form-group.form-actions
+    - if @topic.new_record?
+      = f.submit "Add topic", class: 'btn btn-primary'
+    - else
+      = f.submit "Update topic", class: 'btn btn-primary'

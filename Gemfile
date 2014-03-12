@@ -18,6 +18,8 @@ gem 'mysql2'
 gem 'sendgrid'
 gem 'workflow'
 
+gem 'awesome_nested_set'
+
 group :development do
   gem 'html2haml'
   gem 'quiet_assets'

@@ -15,7 +15,7 @@ class Quiz < ActiveRecord::Base
 
     # Model offer is published and visible on site
     state :active do
-      event :unpublish, transitions_to: :new
+      event :unpublish, transitions_to: :pending
       event :expire, transitions_to: :expired
     end
 

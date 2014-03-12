@@ -27,10 +27,14 @@ Questions::Application.routes.draw do
     end
   end
 
-  # dashboard
+
   namespace :admin do
+    # dashboard
+    get '/', to: 'admin#dashboard', as: 'dashboard'
+
     resources :questions do
-      resources :answers
+      resources :answers do
+      end
     end
     resources :quizzes do
       resources :questions, only: [:index, :create]
@@ -39,13 +43,19 @@ Questions::Application.routes.draw do
         post 'import', to: 'quizzes#import'
       end
       member do
-        patch 'publish'
-        patch 'unpublish'
-        patch 'expire'
+        patch :publish
+        patch :unpublish
+        patch :expire
       end
     end
 
-    get '/', to: 'admin#dashboard', as: 'dashboard'
+    resources :topics do
+      member do
+        patch :publish
+        patch :unpublish
+        patch :archive
+      end
+    end
   end
 
 end

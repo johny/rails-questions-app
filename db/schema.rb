@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311231348) do
+ActiveRecord::Schema.define(version: 20140312164119) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -73,6 +73,24 @@ ActiveRecord::Schema.define(version: 20140311231348) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
+    t.string   "workflow_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topics", ["depth"], name: "index_topics_on_depth", using: :btree
+  add_index "topics", ["lft"], name: "index_topics_on_lft", using: :btree
+  add_index "topics", ["parent_id"], name: "index_topics_on_parent_id", using: :btree
+  add_index "topics", ["rgt"], name: "index_topics_on_rgt", using: :btree
+  add_index "topics", ["workflow_state"], name: "index_topics_on_workflow_state", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
