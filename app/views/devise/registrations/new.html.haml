@@ -22,6 +22,10 @@
     = f.label :password_confirmation, "Powtórz hasło:"
     = f.password_field :password_confirmation, class: 'form-control'
 
+  %div.social-login
+    %span.label Lub dołącz przez
+    = link_to "Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-default btn-lg btn-facebook'
+
   %div.form-actions
     = f.submit 'Zarejestruj się', class: 'btn btn-primary btn-lg'
 

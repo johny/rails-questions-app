@@ -22,5 +22,11 @@
         = f.check_box :remember_me
         = f.label :remember_me, "Zapamiętaj przez 2 tygodnie"
 
+
+  %div.social-login
+    %span.label Lub zaloguj się przez
+    = link_to "Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-default btn-lg btn-facebook'
+
+
   %div.form-actions
     = f.submit 'Zaloguj się', class: 'btn btn-primary btn-lg'

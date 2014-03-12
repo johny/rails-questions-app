@@ -4,8 +4,17 @@ Questions::Application.routes.draw do
   resources :games
 
   root :to => 'home#index'
-  devise_for :users, :controllers => {:registrations => 'registrations'}
-  resources :users
+  devise_for :users,
+    path_names: {
+      sign_in: "login",
+      sign_out: "logout"
+    },
+    controllers: {
+      omniauth_callbacks: "authentications",
+      registrations: "registrations"
+  }
+
+
   get '/dashboard', to: 'home#dashboard', as: 'dashboard'
 
 

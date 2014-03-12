@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309205043) do
+ActiveRecord::Schema.define(version: 20140311231348) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.text     "content"
     t.boolean  "is_correct",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,16 +37,6 @@ ActiveRecord::Schema.define(version: 20140309205043) do
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "queestion_quizzes", id: false, force: true do |t|
-    t.integer "question_id"
-    t.integer "quiz_id"
-  end
-
-  create_table "question_quizzes", id: false, force: true do |t|
-    t.integer "question_id"
-    t.integer "quiz_id"
   end
 
   create_table "questions", force: true do |t|
