@@ -20,6 +20,9 @@ gem 'workflow'
 
 gem 'awesome_nested_set'
 
+gem 'seedbank'
+gem 'seed_dump'
+
 group :development do
   gem 'html2haml'
   gem 'quiet_assets'
