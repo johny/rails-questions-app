@@ -126,14 +126,29 @@ topics = [
 
 puts "Creating topics:"
 
+counter = 0
+
 topics.each do |t|
   topic = Topic.create!({name: t[:name]})
+  counter += 1
   puts "Created topic: #{topic.name}"
   if t[:children] != nil
     t[:children].each do |child|
-      name = (child.is_a?(String) ? child : child[:name])
-      child_topic = Topic.create!({name: name, parent_id: topic.id})
+      if child.is_a? String
+        hash = {name: child, parent_id: topic.id}
+      else
+        hash = child
+        hash[:parent_id] = topic.id
+      end
+      child_topic = Topic.create!(hash)
+      counter += 1
       puts "  - Child topic: #{child_topic.name}"
     end
   end
 end
+
+puts "Rebuilding Topic tree..."
+Topic.rebuild!
+puts "Done!"
+
+puts "Total #{counter} topics created. Seed finished"
