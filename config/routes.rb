@@ -6,16 +6,17 @@ Questions::Application.routes.draw do
   root :to => 'home#index'
   devise_for :users,
     path_names: {
-      sign_in: "login",
-      sign_out: "logout"
+      sign_in: "zaloguj",
+      sign_out: "wyloguj"
     },
     controllers: {
       omniauth_callbacks: "authentications",
       registrations: "registrations"
   }
 
-
-  get '/dashboard', to: 'home#dashboard', as: 'dashboard'
+  get '/kokpit', to: 'home#dashboard', as: 'dashboard'
+  get '/konto', to: 'accounts#index', as: 'account'
+  get '/konto/ustawienia', to: 'accounts#settings', as: 'account_settings'
 
 
   resources :quiz, only: [:index, :show] do

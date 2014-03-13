@@ -2,7 +2,8 @@
 //= require jquery_ujs
 // require turbolinks
 //= require bootstrap
-//= require_tree .
+//= require app
+
 
 var Quiz = {
   initialTimer: 60,

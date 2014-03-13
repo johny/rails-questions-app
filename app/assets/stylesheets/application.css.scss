@@ -1,8 +1,8 @@
-$brand-primary: #27ae60;
+$brand-primary: #1c5a9f;
 $navbar-inverse-color: #fff;
 $navbar-inverse-link-color: $navbar-inverse-color;
 $navbar-inverse-link-hover-color: #fff;
-$navbar-inverse-bg: #27ae60;
+$navbar-inverse-bg: #1c5a9f;
 
 @import "bootstrap";
 
@@ -134,4 +134,10 @@ footer{
 
 .quiz-question{
   margin: 0 0 20px 0;
+}
+
+.row-actions{
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dotted #eee;
 }

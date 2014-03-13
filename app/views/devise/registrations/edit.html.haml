@@ -1,39 +1,43 @@
 %div.page-header
   %h1 Edycja konta
 
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { method: :put, :role => 'form'}) do |f|
+%div.row
+  %div.col-md-9
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { method: :put, :role => 'form'}) do |f|
 
-  = devise_error_messages!
+      = devise_error_messages!
 
-  %div.form-group
-    = f.label :name, "Imię:"
-    = f.text_field :name, autofocus: true, class: 'form-control'
+      %div.form-group
+        = f.label :name, "Imię:"
+        = f.text_field :name, autofocus: true, class: 'form-control'
 
-  %div.form-group
-    = f.label :email, "Adres email:"
-    = f.email_field :email, autocomplete: :off, class: 'form-control'
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %p.help-block Oczekuje na potwierdzenie #{resource.unconfirmed_email}
+      %div.form-group
+        = f.label :email, "Adres email:"
+        = f.email_field :email, autocomplete: :off, class: 'form-control'
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %p.help-block Oczekuje na potwierdzenie #{resource.unconfirmed_email}
 
-  %div.well
-    %p Jeśli nie chcesz zmieniać hasła, pozostaw poniższe pola puste.
+      %div.well
+        %p Jeśli nie chcesz zmieniać hasła, pozostaw poniższe pola puste.
 
-    %div.row
-      %div.form-group.col-sm-6
-        = f.label :password, "Nowe hasło:"
-        = f.password_field :password, class: 'form-control', autocomplete: :off
-        %span.help-block Minimum 8 znaków
+        %div.row
+          %div.form-group.col-sm-6
+            = f.label :password, "Nowe hasło:"
+            = f.password_field :password, class: 'form-control', autocomplete: :off
+            %span.help-block Minimum 8 znaków
 
-      %div.form-group.col-sm-6
-        = f.label :password_confirmation, "Powtórz hasło:"
-        = f.password_field :password_confirmation, class: 'form-control'
+          %div.form-group.col-sm-6
+            = f.label :password_confirmation, "Powtórz hasło:"
+            = f.password_field :password_confirmation, class: 'form-control'
 
-  %div.form-group
-    = f.label :current_password, "Obecne hasło:"
-    = f.password_field :current_password, class: 'form-control'
+      %div.form-group
+        = f.label :current_password, "Obecne hasło:"
+        = f.password_field :current_password, class: 'form-control'
 
-  %div.alert.alert-info
-    %p Musisz podać swoje obecne hasło aby zaktualizować profil
+      %div.alert.alert-info
+        %p Musisz podać swoje obecne hasło aby zaktualizować profil
 
-
-  = f.submit 'Aktualizuj konto', class: 'btn btn-primary'
+      %div.row-actions
+        = f.submit 'Aktualizuj konto', class: 'btn btn-primary btn-lg'
+  %div.col-md-3
+    = render 'accounts/nav'
