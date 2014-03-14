@@ -18,6 +18,7 @@ gem 'haml-rails'
 gem 'mysql2'
 gem 'sendgrid'
 gem 'workflow'
+gem "paperclip", "~> 4.1"
 
 gem 'awesome_nested_set'
 

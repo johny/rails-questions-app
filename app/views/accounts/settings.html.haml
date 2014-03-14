@@ -4,5 +4,23 @@
 %div.row
   %div.col-md-9
 
+    %div.panel.panel-default
+      %div.panel-heading
+        Twój Avatar
+      %div.panel-body
+        %div.row
+          %div.col-md-3.current-user-avatar
+            = image_tag current_user.avatar.url(:medium), class: 'user-avatar'
+          %div.col-md-9
+            - current_user.authentications.each do |auth|
+              - if auth.image
+                %div.choose-image
+                  = image_tag auth.image, class: 'user-avatar social-avatar'
+                  - if auth.facebook?
+                    = link_to "Użyj profilu Facebooka", "#", class: 'btn btn-default'
+                  - else
+                    = link_to "Użyj profilu Google+", "#", class: 'btn btn-default'
+
+
   %div.col-md-3
     = render 'accounts/nav'

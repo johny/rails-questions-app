@@ -148,3 +148,22 @@ footer{
   padding-top: 20px;
   border-top: 1px dotted #eee;
 }
+
+.current-user-avatar{
+  text-align: center;
+  padding: 5px 0;
+}
+
+.user-avatar{
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: 1px solid #aaa;
+  margin: 5px 0;
+}
+
+.social-avatar{
+  width: 75px;
+  height: 75px;
+  border: none;
+}

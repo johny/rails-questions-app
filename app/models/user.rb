@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   has_many :games
   has_many :quizzes, through: :games
 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :default_url => "/images/:style/avatar.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 
   def self.find_or_create_from_oauth data
 
