@@ -10,13 +10,14 @@ class User < ActiveRecord::Base
   has_many :quizzes, through: :games
 
 
-  def self.new_from_oauth data
+  def self.find_or_create_from_oauth data
 
-    user = User.new({
-      email: data['info']['email'],
-      name: data['info']['name'],
-      password: Devise.friendly_token[0,10]
-    })
+    user = User.find_or_initialize_by(email: data['info']['email'])
+
+    if user.new_record?
+      user.name = data['info']['name']
+      user.password = Devise.friendly_token[0,10]
+    end
 
     auth = Authentication.new({
       provider: data['provider'],

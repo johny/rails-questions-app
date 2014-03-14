@@ -1,7 +1,7 @@
 $brand-primary: #1c5a9f;
-$navbar-inverse-color: #fff;
+$navbar-inverse-color: #e4f1ff;
 $navbar-inverse-link-color: $navbar-inverse-color;
-$navbar-inverse-link-hover-color: #fff;
+$navbar-inverse-link-hover-color: #e4f1ff;
 $navbar-inverse-bg: #1c5a9f;
 
 @import "bootstrap";
@@ -51,19 +51,24 @@ html,body{
     margin: 40px -40px 0 -40px;
     border-top: 1px solid #ccc;
   }
+
+  .navbar{
+    a:link, a:visited{color: $navbar-inverse-link-color;}
+    a:hover, a:active{color: $navbar-inverse-link-hover-color;background: rgba(255,255,255,0.1)}
+  }
+
 }
 
 .social-login{
   border-top: 1px solid #eee;
-  padding: 20px 0 10px 0;
+  padding: 20px 0 0px 0;
+  margin-top: 20px;
   position: relative;
-  text-align: center;
 
   .label{
     position: absolute;
     top: -10px;
-    left: 50%;
-    margin-left: -64px;
+    left: -10px;
     text-align: center;
     display: inline-block;
     padding: 5px 10px;
@@ -77,6 +82,7 @@ html,body{
     background-color: #4c66a4;
     color: #fff;
     border-color: darken(#4c66a4, 10%);
+    margin-right: 10px;
 
     &:hover{
       background-color: darken(#4c66a4, 10%);
@@ -87,6 +93,7 @@ html,body{
     background-color: #d14836;
     color: #fff;
     border-color: darken(#d14836, 10%);
+    margin-right: 10px;
 
     &:hover{
       background-color: darken(#d14836, 10%);

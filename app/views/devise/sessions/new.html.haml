@@ -23,7 +23,7 @@
         = f.label :remember_me, "Zapamiętaj przez 2 tygodnie"
 
   %div.social-login
-    %span.label Lub zaloguj się przez
+    %span.label Lub zaloguj się używając
     = link_to "Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-default btn-lg btn-facebook'
     = link_to "Google", user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-default btn-lg btn-google'
 
