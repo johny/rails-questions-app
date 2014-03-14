@@ -25,8 +25,7 @@ var Quiz = {
 
   tick: function(){
     if(Quiz.timer == 0){
-      Quiz.stageFinish();
-      return;
+      Quiz.timerFailed();
     } else {
       Quiz.timer -= 1;
       $('.time-counter').html(Quiz.timer + 's');
@@ -40,6 +39,14 @@ var Quiz = {
 
       Quiz.timeout = window.setTimeout(Quiz.tick, 1000);
     }
+  },
+
+  timerFailed: function(){
+    Quiz.stageFinish();
+    // proceed to next stage
+    window.setTimeout(function(){
+      $('.question.active').fadeOut(Quiz.nextStage)
+    }, 500);
   },
 
   selectAnswer: function(event){
@@ -73,6 +80,7 @@ var Quiz = {
       cache: false,
       type: 'POST'
     }).done(function(data){
+
       var active_answer = $('.active-answer')
       var correct_answer;
       active_answer.removeClass('list-group-item-info');
@@ -84,6 +92,8 @@ var Quiz = {
         correct_answer.addClass('list-group-item-success')
         active_answer.addClass('list-group-item-danger')
       }
+
+      $('.game-score').text(data.score);
 
       // proceed to next stage
       window.setTimeout(function(){

@@ -1,6 +1,7 @@
 class RepliesController < ApplicationController
 
   def create
+
     @quiz = Quiz.find params[:quiz_id]
     @game = @quiz.games.find params[:game_id]
     @question = @quiz.questions.find params[:question_id]
@@ -8,16 +9,19 @@ class RepliesController < ApplicationController
 
     if @quiz && @game && @question && @answer
 
-      @reply = Reply.new
-      @reply.game = @game
-      @reply.question = @question
-      @reply.answer = @answer
-      @reply.user = current_user
+      # create reply object
+      @reply = Reply.create({
+        game_id: @game.id,
+        question_id: @question.id,
+        answer_id: @answer.id,
+        user_id: current_user.id,
+        is_correct: @answer.is_correct
+      })
 
-      @reply.is_correct = @answer.is_correct;
-      @reply.save
+      # update score
+      @game.count_reply!(@reply)
 
-      render json: {success: @reply.is_correct, correct_answer: @question.correct_answer.id }
+      render json: {success: @reply.is_correct, correct_answer: @question.correct_answer.id, score: @game.score}
 
     else
       render json: false, status: 400
