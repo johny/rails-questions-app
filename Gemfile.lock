@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 9ee29f361f5a7233667472cf03f11cc64c2738c6
+  specs:
+    paperclip (4.1.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -151,11 +161,6 @@ GEM
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (4.1.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
-      mime-types
     polyglot (0.3.4)
     puma (2.8.1)
       rack (>= 1.1, < 2.0)
@@ -265,7 +270,7 @@ DEPENDENCIES
   mysql2
   omniauth-facebook
   omniauth-google-oauth2
-  paperclip (~> 4.1)
+  paperclip!
   puma
   quiet_assets
   rails (= 4.0.3)

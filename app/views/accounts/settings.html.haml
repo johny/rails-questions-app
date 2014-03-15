@@ -17,9 +17,9 @@
                 %div.choose-image
                   = image_tag auth.image, class: 'user-avatar social-avatar'
                   - if auth.facebook?
-                    = link_to "Użyj profilu Facebooka", "#", class: 'btn btn-default'
+                    = link_to "Użyj profilu Facebooka", avatar_settings_path(auth), class: 'btn btn-default', method: :post
                   - else
-                    = link_to "Użyj profilu Google+", "#", class: 'btn btn-default'
+                    = link_to "Użyj profilu Google+", avatar_settings_path(auth), class: 'btn btn-default', method: :post
 
 
   %div.col-md-3

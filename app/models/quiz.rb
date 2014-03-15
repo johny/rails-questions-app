@@ -26,7 +26,7 @@ class Quiz < ActiveRecord::Base
     state :archived
   end
 
-  scope :daily, -> { with_active_state.first}
+  scope :daily, -> { with_active_state.where(date: Date.today).limit(1)}
 
   def self.has_daily_quiz_for user
     quiz = self.daily

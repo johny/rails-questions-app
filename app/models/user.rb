@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 
+  def avatar_remote_url=(url)
+    self.avatar = URI.parse(url)
+  end
+
   def self.find_or_create_from_oauth data
 
     user = User.find_or_initialize_by(email: data['info']['email'])
@@ -21,6 +25,7 @@ class User < ActiveRecord::Base
     if user.new_record?
       user.name = data['info']['name']
       user.password = Devise.friendly_token[0,10]
+      user.avatar = URI.parse(data['info']['image']) if data['info']['image']
     end
 
     auth = Authentication.new({
@@ -42,5 +47,20 @@ class User < ActiveRecord::Base
     return user
 
   end
+
+  def set_avatar_from_url! url
+
+    if url.match(/facebook/)
+      r = open("http://graph.facebook.com/#{@user.facebook_id}/picture")
+
+      self.avatar = open(url)
+      self.avatar_content_type = "image/jpeg"
+      return self.save(validate: false)
+    else
+      self.avatar = open(URI.parse(url))
+      return self.save
+    end
+  end
+
 
 end

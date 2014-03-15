@@ -17,6 +17,7 @@ Questions::Application.routes.draw do
   get '/kokpit', to: 'home#dashboard', as: 'dashboard'
   get '/konto', to: 'accounts#index', as: 'account'
   get '/konto/ustawienia', to: 'accounts#settings', as: 'account_settings'
+  post '/konto/avatar/:id', to: 'accounts#avatar', as: 'avatar_settings'
 
 
   resources :quiz, only: [:index, :show] do
