@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
 
   has_many :answers
   has_and_belongs_to_many :quizzes
+  has_and_belongs_to_many :topics
 
   validates_presence_of :title
 

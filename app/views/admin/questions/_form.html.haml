@@ -7,9 +7,21 @@
           %li= msg
 
   .form-group
-    = f.label :title
+    = f.label :title, "Title:"
     = f.text_field :title, class: 'form-control'
 
+  .form-group
+    %label Topics:
+    %div.container
+      %div.row
+        - size = Topic.all.size
+        - 4.times do |i|
+          %div.col-md-3
+            - batch = Topic.all.limit(size / 4 ).offset((size / 4) * i)
+            = f.collection_check_boxes(:topic_ids, batch, :id, :name) do |c|
+              %div.checkbox
+                = c.check_box
+                = c.label
 
-  .actions
-    = f.submit 'Save question', class: 'btn btn-primary'
+  .form-actions
+    = f.submit 'Save question', class: 'btn btn-primary btn-lg'

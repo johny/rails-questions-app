@@ -13,11 +13,13 @@
     %tr
       %th.col-sm-1 Id
       %th Title
+      %th Topics
       %th.col-sm-1
   %tbody
     - @questions.each do |q|
       %tr
         %td= q.id
         %td= link_to q.title, admin_question_path(q)
+        %td= q.topics.collect { |t| t.name }.join(", ")
         %td
-          = link_to 'Edit', edit_admin_question_path(q)
+          = link_to 'Edit', edit_admin_question_path(q), class: 'btn btn-default'

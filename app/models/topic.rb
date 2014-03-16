@@ -2,6 +2,9 @@ class Topic < ActiveRecord::Base
 
   acts_as_nested_set
 
+  has_and_belongs_to_many :questions
+
+
   validates_presence_of :name, :message => "can't be blank"
 
 

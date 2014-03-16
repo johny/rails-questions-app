@@ -76,6 +76,6 @@ class Admin::QuestionsController < Admin::AdminController
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params.require(:question).permit(:title, :workflow_state, answers_attributes: [:id, :content, :is_correct])
+      params.require(:question).permit(:title, topic_ids: [], answers_attributes: [:id, :content, :is_correct])
     end
 end

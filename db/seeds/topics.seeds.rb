@@ -21,11 +21,22 @@ topics = [
     "Teksty piosenek"
   ]},
   {name: "Literatura", children: [
+    "Cytaty",
+    "Poezja",
+    "Komiksy",
+    "Pisarze",
+    "Postacie literackie",
+    "Literatura dziecięca",
+    "Lektury szkolne",
+    "Literatura polska",
+    "Literatura obcojęzyczna",
+    "Fantastyka",
+    "Klasyka",
     "Harry Potter",
     "Igrzyska Śmierci",
     "Zmierzch",
     "Władca Pierścieni",
-    "Biblia",
+    "Biblia"
   ]},
   {name: "Natura", children: [
     "Zwierzęta",
@@ -41,10 +52,12 @@ topics = [
   {name: "Sztuka", children: [
     "Artyści",
     "Fotografia",
+    "Malarstwo",
     "Kolory",
     "Architektura"
   ]},
   {name: "Telewizja", children: [
+    "Seriale",
     "Gra o Tron",
     "Gotowe na wszystko",
     "Zmiennicy",
@@ -94,13 +107,14 @@ topics = [
   ]},
   {name: "Gry i rozrywka", children: [
     "Gry komputerowe",
+    "Konsole",
     "Klasyka gier",
     "World of Warcraft",
     "Minecraft",
     "Pokemon",
     "Gry karciane"
   ]},
-  {name: "Technologie / IT", children: [
+  {name: "Technologie i branża IT", children: [
     "Internet",
     "Gadżety",
     "Apple",
