@@ -8,18 +8,32 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :games
   has_many :quizzes, through: :games
+  has_many :replies
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" },
     :default_url => "/images/:style/avatar.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  before_create :set_initial_title
 
   def avatar_remote_url=(url)
     self.avatar = URI.parse(url)
   end
 
+  def friendly_title
+    "Początkujący" if title == "beginner"
+  end
+
   def score
     return daily_quiz_score
+  end
+
+  def correct_answers_percentage
+    total = replies.size.to_f
+    correct = replies.where(is_correct: true).size.to_f
+
+    return "#{((correct / total) * 100).to_i}%"
+
   end
 
   def count_game_score(game)
@@ -70,6 +84,11 @@ class User < ActiveRecord::Base
       return self.save
     end
   end
+
+  private
+    def set_initial_title
+      title = "beginner"
+    end
 
 
 end
