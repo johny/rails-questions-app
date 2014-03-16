@@ -8,7 +8,7 @@ class CreateReplies < ActiveRecord::Migration
       t.references :answer
       t.boolean :is_correct, default: false
 
-      t.integer :timer
+      t.integer :time
 
       t.timestamps
     end

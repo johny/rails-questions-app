@@ -27,6 +27,10 @@ class GamesController < ApplicationController
   def results
     @quiz = Quiz.find params[:quiz_id]
     @game = @quiz.games.find params[:id]
+    if @game.can_finish?
+      @game.finish!
+      current_user.count_game_score(@game)
+    end
   end
 
 end

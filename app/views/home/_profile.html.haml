@@ -1,0 +1,15 @@
+- content_for :at_root do
+  %div.profile-wrapper
+    %div.container
+      %div.row
+        %div.col-md-4
+        %div.col-md-4
+          %div.profile
+            %div.avatar
+              = image_tag current_user.avatar.url(:medium), class: 'user-avatar'
+            %h1 #{current_user.name}
+            %span.score
+              #{current_user.score}
+              %span.score-label Punkty
+
+        %div.col-md-4

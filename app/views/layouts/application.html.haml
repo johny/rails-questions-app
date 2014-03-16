@@ -19,6 +19,8 @@
         = yield
     - else
       = render 'layouts/header'
+      - if content_for :at_root
+        = yield :at_root
       %div.container
         = render 'layouts/messages'
         = yield

@@ -10,4 +10,9 @@ class Reply < ActiveRecord::Base
     where(user_id: user.id, game_id: game.id).first()
   end
 
+
+  def is_correct?
+    return is_correct == true
+  end
+
 end

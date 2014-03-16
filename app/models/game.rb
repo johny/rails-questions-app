@@ -9,8 +9,18 @@ class Game < ActiveRecord::Base
 
   belongs_to :quiz
   belongs_to :user
-
   has_many :replies
+
+  include Workflow
+  workflow do
+
+    # Model is new, fresh created and awaiting moderation
+    state :active do
+      event :finish, transitions_to: :finished
+    end
+    # Old jobs, imported and archived
+    state :finished
+  end
 
   def correct_replies_percentage
     total = quiz.questions.size.to_f
@@ -29,7 +39,7 @@ class Game < ActiveRecord::Base
   def count_reply! (reply)
 
     if reply.is_correct
-      self.score += Rules.score_for_correct_answer
+      self.score = self.score + Rules.score_for_correct_answer + reply.time
       self.save!
     end
 

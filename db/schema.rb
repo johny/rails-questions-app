@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316110445) do
+ActiveRecord::Schema.define(version: 20140316201841) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -40,10 +40,13 @@ ActiveRecord::Schema.define(version: 20140316110445) do
   create_table "games", force: true do |t|
     t.integer  "user_id"
     t.integer  "quiz_id"
-    t.integer  "score",      default: 0
+    t.integer  "score",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "workflow_state"
   end
+
+  add_index "games", ["workflow_state"], name: "index_games_on_workflow_state", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "title"
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 20140316110445) do
     t.integer  "question_id"
     t.integer  "answer_id"
     t.boolean  "is_correct",  default: false
-    t.integer  "timer"
+    t.integer  "time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,6 +128,7 @@ ActiveRecord::Schema.define(version: 20140316110445) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "daily_quiz_score",       default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

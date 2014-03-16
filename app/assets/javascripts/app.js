@@ -1,4 +1,5 @@
 var QuizApp = {
+
   init: function(){
     QuizApp.navigationActiveStates();
   },
@@ -14,9 +15,7 @@ var QuizApp = {
   }
 }
 
-$(document).ready(function(){
-  QuizApp.init();
-});
+
 
 //= require jquery
 //= require jquery_ujs

@@ -34,7 +34,7 @@ class Quiz < ActiveRecord::Base
     if user.quiz_ids.include? quiz.id
       return false
     else
-      return quiz.first
+      return quiz
     end
 
   end

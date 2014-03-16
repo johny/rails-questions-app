@@ -7,15 +7,20 @@
 
 %div.row
   %div.col-md-8
-    - @quiz.questions.each_with_index do |question, index|
+    - @game.replies.each_with_index do |reply, index|
       %div.panel.panel-default.question
         %div.panel-heading
-          %h3.panel-title #{index +1}. #{question.title}
+          %h3.panel-title #{index +1}. #{reply.question.title}
 
         %ul.list-group
-          - question.answers.each_with_index do |answer, idx|
-            %li{class: answer_class(answer, answer.replies.from_user_for_game(current_user, @game))}
+          - reply.question.answers.each_with_index do |answer, idx|
+            %li{class: answer_class(answer, reply)}
               #{letter(idx)}. #{answer.content}
+              - if reply.answer_id == answer.id
+                - if reply.is_correct?
+                  = "(+#{(Rules.score_for_correct_answer + reply.time)})"
+                - else reply
+                  = "(0)"
 
 
   %div.col-md-4

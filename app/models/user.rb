@@ -18,6 +18,15 @@ class User < ActiveRecord::Base
     self.avatar = URI.parse(url)
   end
 
+  def score
+    return daily_quiz_score
+  end
+
+  def count_game_score(game)
+    self.daily_quiz_score += game.score
+    self.save!
+  end
+
   def self.find_or_create_from_oauth data
 
     user = User.find_or_initialize_by(email: data['info']['email'])
