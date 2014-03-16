@@ -4,11 +4,22 @@
 
 %div.page-content
 
-  %div.alert.alert-info
-    - if @daily_quiz
-      %p
-        Dostępny nowy codzieny quiz:
-        %strong= @daily_quiz.title
-      %p= link_to "Zagraj teraz", new_quiz_game_path(@daily_quiz), class: "btn btn-primary"
-    - else
-      %p Już wypełniłeś codzienny quiz! Sprawdź jutro!
+  %div.row
+    %div.col-md-6
+      %div.panel.panel-default
+        %div.panel-heading
+          %h3.panel-title Quiz na dziś
+        %div.panel-body
+          - if @daily_quiz
+            %p
+              Dostępny nowy quiz:
+              %strong= @daily_quiz.title
+            %p= link_to "Zagraj teraz", new_quiz_game_path(@daily_quiz), class: "btn btn-primary"
+          - else
+            %p Już wypełniłeś codzienny quiz! Sprawdź jutro!
+    %div.col-md-6
+      %div.panel.panel-default
+        %div.panel-heading
+          %h3.panel-title Wyzwania
+        %div.panel-body
+          %p Wyzwania dostępne już niebawem.
