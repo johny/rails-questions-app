@@ -26,12 +26,14 @@ class Quiz < ActiveRecord::Base
     state :archived
   end
 
-  scope :daily, -> { with_active_state.find_by(date: Date.today)}
+  def self.daily
+    with_active_state.where(date: Date.today).first
+  end
 
   def self.has_daily_quiz_for user
     quiz = self.daily
 
-    if user.quiz_ids.include? quiz.id
+    if quiz.nil? || user.quiz_ids.include?(quiz.id)
       return false
     else
       return quiz
