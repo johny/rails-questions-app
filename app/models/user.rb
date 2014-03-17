@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   before_create :set_initial_title
 
+  scope :ranking, -> { order(daily_quiz_score: :desc)}
+
   def avatar_remote_url=(url)
     self.avatar = URI.parse(url)
   end
@@ -31,6 +33,8 @@ class User < ActiveRecord::Base
   def correct_answers_percentage
     total = replies.size.to_f
     correct = replies.where(is_correct: true).size.to_f
+
+    return "0%" if total == 0
 
     return "#{((correct / total) * 100).to_i}%"
 

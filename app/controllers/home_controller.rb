@@ -9,4 +9,8 @@ class HomeController < ApplicationController
     @daily_quiz = Quiz.has_daily_quiz_for current_user
   end
 
+  def rankings
+    @users = User.ranking
+  end
+
 end

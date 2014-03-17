@@ -10,7 +10,9 @@
         = link_to 'QuizApp', root_path, class: 'navbar-brand'
       .collapse.navbar-collapse
         - if user_signed_in?
-          %p.navbar-text Witaj #{current_user.name}!
+          %ul.nav.navbar-nav
+            %li= link_to " Witaj #{current_user.name}!", dashboard_path
+            %li= link_to "Ranking", rankings_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li= link_to "Ustawienia", account_path

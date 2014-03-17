@@ -19,6 +19,8 @@ Questions::Application.routes.draw do
   get '/konto/ustawienia', to: 'accounts#settings', as: 'account_settings'
   post '/konto/avatar/:id', to: 'accounts#avatar', as: 'avatar_settings'
 
+  get '/ranking', to: "home#rankings", as: 'rankings'
+
 
   resources :quiz, only: [:index, :show] do
     resources :games, only: [:new, :create, :show] do

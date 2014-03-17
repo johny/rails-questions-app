@@ -1,0 +1,17 @@
+%div.page-header
+  %h1 Miejsce w rankingu
+
+%div.page-content
+
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Gracz
+        %th Ilość punktów
+    %tbody
+      - @users.each_with_index do |user, index|
+        %tr
+          %td= index+1
+          %td= user.name
+          %td= user.score
