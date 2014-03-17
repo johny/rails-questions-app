@@ -10,11 +10,21 @@
             %h1= current_user.name
             %span.title= current_user.friendly_title
 
+            %span.level
+              Poziom #{current_user.level}
+
         %div.col-md-3
           %div.stat
             %span.score
               = current_user.score
-              %span.stats-label Punkty
+              %span.stats-label
+                Punkty w rankingu
+
+          %div.stat
+            %span.score.ranking
+              = current_user.ranking_position
+              %span.stats-label
+                Miejsce w rankingu
 
         %div.col-md-3
           %div.stat
@@ -29,6 +39,12 @@
               = current_user.correct_answers_percentage
               %span.stats-label
                 Poprawność
+
+          %div.stat
+            %span.score.response
+              = current_user.average_response_time
+              %span.stats-label
+                Średnio odpowiedź
 
 
         %div.col-md-4

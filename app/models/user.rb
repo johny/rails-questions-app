@@ -30,14 +30,21 @@ class User < ActiveRecord::Base
     return daily_quiz_score
   end
 
+  def ranking_position
+    ranking = User.ranking.select(:id).collect { |u| u.id }
+    return ranking.index(id) + 1
+  end
+
   def correct_answers_percentage
     total = replies.size.to_f
     correct = replies.where(is_correct: true).size.to_f
-
     return "0%" if total == 0
-
     return "#{((correct / total) * 100).to_i}%"
+  end
 
+  def average_response_time
+    average = replies.average(:time)
+    return "#{average} s"
   end
 
   def count_game_score(game)

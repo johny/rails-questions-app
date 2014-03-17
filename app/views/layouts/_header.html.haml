@@ -11,7 +11,7 @@
       .collapse.navbar-collapse
         - if user_signed_in?
           %ul.nav.navbar-nav
-            %li= link_to " Witaj #{current_user.name}!", dashboard_path
+            %li= link_to "Twój profil", dashboard_path
             %li= link_to "Ranking", rankings_path
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?

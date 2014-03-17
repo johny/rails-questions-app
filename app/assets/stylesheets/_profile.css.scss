@@ -13,6 +13,7 @@
   text-align: center;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   padding: 30px 0 0 0;
+  font-weight: 300;
 
   h1{
     font-weight: 300;
@@ -21,8 +22,17 @@
   .title{
     font-style: italic;
     font-size: 17px;
-    font-weight: 300;
+    display: block;
   }
+
+  .level{
+    display: block;
+    font-size: 17px;
+    padding: 10px 0 0 0;
+  }
+
+
+
 }
 
 .stats-label{
@@ -42,7 +52,7 @@
   .score{
     display: block;
     list-style: none;
-    font-size: 90px;
+    font-size: 72px;
     font-weight: 100;
     margin: 20px 0 0 0;
     padding: 00px 30px 20px 30px;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316213345) do
+ActiveRecord::Schema.define(version: 20140317084058) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20140316213345) do
     t.datetime "avatar_updated_at"
     t.integer  "daily_quiz_score",       default: 0
     t.string   "title"
+    t.integer  "xp_points",              default: 0
+    t.integer  "level",                  default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
