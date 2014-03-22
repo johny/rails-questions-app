@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   before_create :set_initial_title
+  before_save :calculate_xp_level
 
   scope :ranking, -> { order(daily_quiz_score: :desc)}
 
@@ -47,9 +48,34 @@ class User < ActiveRecord::Base
     return "#{average} s"
   end
 
+  def xp_for_next_level
+    xp = (Rules.base_xp_per_level * (level + 0.15 * (self.level - 1))).to_i
+    return xp
+  end
+
+  def xp_bar_percentage
+    return "#{((xp_points.to_f / xp_for_next_level.to_f) * 100).to_i}%"
+  end
+
   def count_game_score(game)
+    # update user scrore
     self.daily_quiz_score += game.score
+
+    # update xp
+    self.xp_points += game.score
+
+    # +25% bonus if quiz was completed 100% correct
+    if game.correct_replies_percentage == 100
+      self.xp_points += (game.score * 0.25).to_i
+    end
+
     self.save!
+  end
+
+  def calculate_xp_level
+    if xp_points > xp_for_next_level
+      level += 1
+    end
   end
 
   def self.find_or_create_from_oauth data

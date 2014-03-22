@@ -12,4 +12,8 @@ class Rules
     100
   end
 
+  def self.base_xp_per_level
+    300
+  end
+
 end

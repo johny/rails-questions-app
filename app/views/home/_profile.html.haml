@@ -51,5 +51,19 @@
               %span.stats-label
                 Średnio odpowiedź
 
-
-        %div.col-md-4
+      %div.row
+        %div.col-md-3
+          %div.xp
+            = current_user.xp_points
+            XP
+            %span.stats-label
+              Punkty doświadczenia
+        %div.col-md-9
+          %div.stat.xp-bar
+            .score
+              %div.progress.xp-progress
+                %div.progress-bar.xp-progress-bar{role: 'progressbar', style: "width: #{current_user.xp_bar_percentage}%"}
+              %span.stats-label
+                Następny poziom &mdash;
+                = current_user.xp_for_next_level
+                XP

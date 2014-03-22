@@ -31,8 +31,6 @@
     padding: 10px 0 0 0;
   }
 
-
-
 }
 
 .stats-label{
@@ -59,4 +57,19 @@
     background: rgba(255,0,255,0.2);
     border-radius: 3px;
   }
+}
+
+.xp{
+  @extend .profile;
+  font-size: 24px;
+  padding-top: 50px;
+}
+
+.xp-bar{
+  text-align: left;
+
+  .score{
+    padding-top: 20px;
+  }
+
 }
