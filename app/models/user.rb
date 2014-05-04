@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :token_authenticatable
+         :omniauthable
 
   has_many :authentications
   has_many :games
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
   before_create :set_initial_title
   before_save :calculate_xp_level
+  before_save :ensure_authentication_token
 
   scope :ranking, -> { order(daily_quiz_score: :desc)}
 
@@ -122,10 +123,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
+  end
+
   private
+
     def set_initial_title
       title = "beginner"
     end
+
+    def generate_authentication_token
+      loop do
+        token = Devise.friendly_token
+        break token unless User.where(authentication_token: token).first
+      end
+  end
 
 
 end

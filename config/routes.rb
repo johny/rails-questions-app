@@ -1,10 +1,9 @@
 Questions::Application.routes.draw do
 
 
-  scope module: :api, defaults:{ format: 'json'} do
-    namespace :v1 do
-
-    end
+  namespace :api, defaults:{ format: 'json'} do
+    resources :users, only: [:show, :create]
+    resources :sessions, only: [:create, :destroy]
   end
 
   resources :games
