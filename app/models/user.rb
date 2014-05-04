@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :omniauthable, :token_authenticatable
 
   has_many :authentications
   has_many :games
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
     if user.new_record?
       user.name = data['info']['name']
       user.password = Devise.friendly_token[0,10]
-      user.avatar = URI.parse(data['info']['image']) if data['info']['image']
+      #user.avatar = data['info']['image'] if data['info']['image']
     end
 
     auth = Authentication.new({
