@@ -42,6 +42,11 @@ GEM
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
     bcrypt (3.1.7)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
@@ -58,7 +63,7 @@ GEM
     capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capybara (2.2.1)
+    capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -68,6 +73,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -75,7 +81,17 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
-    database_cleaner (1.0.1)
+    columnize (0.8.9)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
+    database_cleaner (1.2.0)
+    debug_inspector (0.0.2)
+    debugger (1.6.6)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.2)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -83,9 +99,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    email_spec (1.5.0)
-      launchy (~> 2.1)
-      mail (~> 2.2)
+    docile (1.1.3)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
@@ -129,6 +143,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
@@ -162,6 +177,13 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
     puma (2.8.2)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
@@ -179,27 +201,36 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.0)
       sprockets-rails (~> 2.0)
-    rails_layout (1.0.14)
+    rails_layout (1.0.15)
     railties (4.1.0)
       actionpack (= 4.1.0)
       activesupport (= 4.1.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.1)
-    rspec-core (2.14.8)
-    rspec-expectations (2.14.5)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.6)
-    rspec-rails (2.14.2)
+    rspec-collection_matchers (0.0.4)
+      rspec-expectations (>= 2.99.0.beta1)
+    rspec-core (3.0.0.beta2)
+      rspec-support (= 3.0.0.beta2)
+    rspec-expectations (3.0.0.beta2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.0.0.beta2)
+    rspec-mocks (3.0.0.beta2)
+      rspec-support (= 3.0.0.beta2)
+    rspec-rails (3.0.0.beta2)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
+      rspec-collection_matchers
+      rspec-core (= 3.0.0.beta2)
+      rspec-expectations (= 3.0.0.beta2)
+      rspec-mocks (= 3.0.0.beta2)
+      rspec-support (= 3.0.0.beta2)
+    rspec-support (3.0.0.beta2)
     ruby_parser (3.1.3)
       sexp_processor (~> 4.1)
+    safe_yaml (1.0.3)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -214,6 +245,14 @@ GEM
       json
       json
     sexp_processor (4.4.3)
+    shoulda-matchers (2.6.1)
+      activesupport (>= 3.0.0)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
+    slop (3.5.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -232,6 +271,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
+    timecop (0.7.1)
     tins (1.1.0)
     treetop (1.4.15)
       polyglot
@@ -245,6 +285,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    webmock (1.17.4)
+      addressable (>= 2.2.7)
+      crack (>= 0.3.2)
     workflow (1.1.0)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -254,15 +297,16 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_nested_set
+  better_errors
+  binding_of_caller
   bootstrap-sass
   capistrano (~> 3.1.0)
   capistrano-bundler
   capistrano-rails
   capistrano-rvm
-  capybara
-  database_cleaner (= 1.0.1)
+  capybara (= 2.2.0)
+  database_cleaner
   devise
-  email_spec
   factory_girl_rails
   figaro
   flutie
@@ -270,19 +314,26 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
   mysql2
   omniauth-facebook
   omniauth-google-oauth2
   paperclip!
+  pry
+  pry-debugger
   puma
   quiet_assets
   rails (= 4.1)
   rails_layout
-  rspec-rails
+  rspec-rails (~> 3.0.0.beta)
   sass-rails
   seed_dump
   seedbank
   sendgrid
+  shoulda-matchers
+  simplecov
+  timecop
   turbolinks
   uglifier
+  webmock
   workflow
