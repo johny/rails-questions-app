@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
-gem 'rails', '4.1'
+ruby '2.1.3'
+gem 'rails', '>= 4.1'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
@@ -9,8 +9,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass'
 
 gem 'devise'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+# gem 'omniauth-facebook'
+# gem 'omniauth-google-oauth2'
 
 gem 'figaro'
 gem 'haml-rails'
@@ -38,11 +38,11 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'puma'
-  gem 'rspec-rails', '~> 3.0.0.beta'
-  gem 'pry'
-  gem 'pry-debugger'
+  # gem 'factory_girl_rails'
+  # gem 'puma'
+  # gem 'rspec-rails', '~> 3.0.0.beta'
+  # gem 'pry'
+  # gem 'pry-debugger'
 end
 
 group :test do

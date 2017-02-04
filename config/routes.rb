@@ -15,8 +15,8 @@ Questions::Application.routes.draw do
       sign_out: "wyloguj"
     },
     controllers: {
-      omniauth_callbacks: "authentications",
-      registrations: "registrations"
+      # omniauth_callbacks: "authentications",
+      #registrations: "registrations"
   }
 
   get '/kokpit', to: 'home#dashboard', as: 'dashboard'
@@ -37,6 +37,8 @@ Questions::Application.routes.draw do
   end
 
 
+  #### ADMIN NAMESPACE ####
+
   namespace :admin do
     # dashboard
     get '/', to: 'admin#dashboard', as: 'dashboard'
@@ -45,6 +47,7 @@ Questions::Application.routes.draw do
       resources :answers do
       end
     end
+
     resources :quizzes do
       resources :questions, only: [:index, :create]
       collection do
@@ -65,6 +68,9 @@ Questions::Application.routes.draw do
         patch :archive
       end
     end
+
+    resources :users
+
   end
 
 end

@@ -11,25 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504002607) do
+ActiveRecord::Schema.define(version: 20160612084640) do
 
-  create_table "answers", force: true do |t|
-    t.integer  "question_id"
-    t.text     "content"
-    t.boolean  "is_correct",  default: false
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id", limit: 4
+    t.text     "content",     limit: 65535
+    t.boolean  "is_correct",                default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "authentications", force: true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "token"
-    t.string   "refresh_token"
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.string   "provider",      limit: 255
+    t.string   "uid",           limit: 255
+    t.string   "token",         limit: 255
+    t.string   "refresh_token", limit: 255
     t.datetime "expires_at"
     t.boolean  "expires"
-    t.string   "image"
+    t.string   "image",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,39 +43,46 @@ ActiveRecord::Schema.define(version: 20140504002607) do
   add_index "authentications", ["provider"], name: "index_authentications_on_provider", using: :btree
   add_index "authentications", ["uid"], name: "index_authentications_on_uid", unique: true, using: :btree
 
-  create_table "games", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "quiz_id"
-    t.integer  "score",          default: 0
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",        limit: 255, null: false
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.integer  "quiz_id",        limit: 4
+    t.integer  "score",          limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "workflow_state"
+    t.string   "workflow_state", limit: 255
   end
 
   add_index "games", ["workflow_state"], name: "index_games_on_workflow_state", using: :btree
 
-  create_table "questions", force: true do |t|
-    t.string   "title"
+  create_table "questions", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "questions_quizzes", id: false, force: true do |t|
-    t.integer "question_id"
-    t.integer "quiz_id"
+  create_table "questions_quizzes", id: false, force: :cascade do |t|
+    t.integer "question_id", limit: 4
+    t.integer "quiz_id",     limit: 4
   end
 
-  create_table "questions_topics", id: false, force: true do |t|
-    t.integer "question_id"
-    t.integer "topic_id"
+  create_table "questions_topics", id: false, force: :cascade do |t|
+    t.integer "question_id", limit: 4
+    t.integer "topic_id",    limit: 4
   end
 
-  create_table "quizzes", force: true do |t|
-    t.string   "title"
-    t.string   "description"
+  create_table "quizzes", force: :cascade do |t|
+    t.string   "title",          limit: 255
+    t.string   "description",    limit: 255
     t.date     "date"
-    t.string   "type"
-    t.string   "workflow_state"
+    t.string   "type",           limit: 255
+    t.string   "workflow_state", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,25 +90,25 @@ ActiveRecord::Schema.define(version: 20140504002607) do
   add_index "quizzes", ["type"], name: "index_quizzes_on_type", using: :btree
   add_index "quizzes", ["workflow_state"], name: "index_quizzes_on_workflow_state", using: :btree
 
-  create_table "replies", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.boolean  "is_correct",  default: false
-    t.integer  "time"
+  create_table "replies", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "game_id",     limit: 4
+    t.integer  "question_id", limit: 4
+    t.integer  "answer_id",   limit: 4
+    t.boolean  "is_correct",            default: false
+    t.integer  "time",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "topics", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "depth"
-    t.string   "workflow_state"
+  create_table "topics", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "description",    limit: 255
+    t.integer  "parent_id",      limit: 4
+    t.integer  "lft",            limit: 4
+    t.integer  "rgt",            limit: 4
+    t.integer  "depth",          limit: 4
+    t.string   "workflow_state", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,33 +119,33 @@ ActiveRecord::Schema.define(version: 20140504002607) do
   add_index "topics", ["rgt"], name: "index_topics_on_rgt", using: :btree
   add_index "topics", ["workflow_state"], name: "index_topics_on_workflow_state", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.string   "confirmation_token"
+    t.string   "name",                   limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+    t.string   "unconfirmed_email",      limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.integer  "daily_quiz_score",       default: 0
-    t.string   "title"
-    t.integer  "xp_points",              default: 0
-    t.integer  "level",                  default: 1
-    t.string   "authentication_token"
+    t.integer  "daily_quiz_score",       limit: 4,   default: 0
+    t.string   "title",                  limit: 255
+    t.integer  "xp_points",              limit: 4,   default: 0
+    t.integer  "level",                  limit: 4,   default: 1
+    t.string   "authentication_token",   limit: 255
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

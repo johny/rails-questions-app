@@ -49,7 +49,8 @@ describe 'POST /api/users' do
 
     expect(JSON.parse(response.body)).to eq({
       'id' => user.id,
-      'name' => 'Test Tester'
+      'name' => 'Test Tester',
+      'token' => user.authentication_token
     })
 
   end
